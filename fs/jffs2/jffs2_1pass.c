@@ -1,7 +1,7 @@
 /*
 -------------------------------------------------------------------------
  * Filename:      jffs2.c
- * Version:       $Id: jffs2_1pass.c,v 1.7 2002/01/25 01:56:47 nyet Exp $
+ * Version:       $Id: jffs2_1pass.c,v 1.1.1.1 2004/11/12 06:19:38 hui Exp $
  * Copyright:     Copyright (C) 2001, Russ Dill
  * Author:        Russ Dill <Russ.Dill@asu.edu>
  * Description:   Module to load kernel from jffs2
@@ -42,7 +42,7 @@
  * provisions above, a recipient may use your version of this file
  * under either the RHEPL or the GPL.
  *
- * $Id: jffs2_1pass.c,v 1.7 2002/01/25 01:56:47 nyet Exp $
+ * $Id: jffs2_1pass.c,v 1.1.1.1 2004/11/12 06:19:38 hui Exp $
  *
  */
 
@@ -687,6 +687,7 @@ char *mkmodestr(unsigned long mode, char *str)
 
 static inline void dump_stat(struct stat *st, const char *name)
 {
+#ifdef notdef
 	char str[20];
 	char s[64], *p;
 
@@ -704,10 +705,12 @@ static inline void dump_stat(struct stat *st, const char *name)
 */
 
 	printf(" %s %8ld %s %s", mkmodestr(st->st_mode,str), st->st_size, s, name);
+#endif
 }
 
 static inline u32 dump_inode(struct b_lists * pL, struct jffs2_raw_dirent *d, struct jffs2_raw_inode *i)
 {
+#ifdef notdef
 	char fname[256];
 	struct stat st;
 
@@ -734,6 +737,7 @@ static inline u32 dump_inode(struct b_lists * pL, struct jffs2_raw_dirent *d, st
 	}
 
 	putstr("\r\n");
+#endif
 
 	return 0;
 }

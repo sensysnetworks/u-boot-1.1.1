@@ -61,6 +61,8 @@ static uint64_t endtime = 0;  /* must be set, default is instant timeout */
 static int      retry_time = -1; /* -1 so can call readline before main_loop */
 #endif
 
+#define get_tbclk()	1000
+#define get_ticks() get_timer(0L)
 #define	endtick(seconds) (get_ticks() + (uint64_t)(seconds) * get_tbclk())
 
 #ifndef CONFIG_BOOT_RETRY_MIN
@@ -391,6 +393,9 @@ void main_loop (void)
 #if defined(CONFIG_BOOTDELAY) && (CONFIG_BOOTDELAY >= 0)
 	s = getenv ("bootdelay");
 	bootdelay = s ? (int)simple_strtol(s, NULL, 10) : CONFIG_BOOTDELAY;
+	if (bootdelay == 0) {
+	    bootdelay = CONFIG_BOOTDELAY;
+	}
 
 	debug ("### main_loop entered: bootdelay=%d\n\n", bootdelay);
 

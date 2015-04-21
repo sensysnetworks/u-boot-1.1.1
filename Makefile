@@ -121,7 +121,6 @@ PLATFORM_LIBS += --no-warn-mismatch -L $(shell dirname `$(CC) $(CFLAGS) -print-l
 # The "tools" are needed early, so put this first
 # Don't include stuff already done in $(LIBS)
 SUBDIRS	= tools \
-	  examples \
 	  post \
 	  post/cpu
 .PHONY : $(SUBDIRS)
@@ -893,6 +892,9 @@ ZPC1900_config: unconfig
 #########################################################################
 ## Coldfire
 #########################################################################
+
+UC5272_config :		unconfig
+	@./mkconfig $(@:_config=) m68k mcf52x2 uc5272
 
 M5272C3_config :		unconfig
 	@./mkconfig $(@:_config=) m68k mcf52x2 m5272c3

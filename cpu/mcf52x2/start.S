@@ -46,7 +46,7 @@
 /* If we come from a pre-loader we don't need an initial exception
  * table.
  */
-#if !defined(CONFIG_MONITOR_IS_IN_RAM)
+#if !defined(CONFIG_MONITOR_IS_IN_RAM) || defined(_UC5272_H)
 
 .text
 /*

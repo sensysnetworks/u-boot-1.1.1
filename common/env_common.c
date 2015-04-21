@@ -64,6 +64,24 @@ uchar (*env_get_char)(int) = env_get_char_init;
 #define MK_STR(x)	XMK_STR(x)
 
 uchar default_environment[] = {
+	"watchdog="	"off"				"\0"
+        "serial="	"X00A00000-0000e"		"\0"
+#ifdef	CONFIG_ETHADDR
+	"ethaddr="	MK_STR(CONFIG_ETHADDR)		"\0"
+#endif
+#ifdef	CONFIG_HOSTNAME
+	"hostname="	MK_STR(CONFIG_HOSTNAME)		"\0"
+#endif
+#ifdef	CONFIG_SNAPSNAME
+	"snaps="	MK_STR(CONFIG_SNAPSNAME)	"\0"
+#endif
+#ifdef	CONFIG_IPADDR
+	"ipaddr="	MK_STR(CONFIG_IPADDR)		"\0"
+#endif
+#ifdef	CONFIG_SERVERIP
+	"serverip="	MK_STR(CONFIG_SERVERIP)		"\0"
+#endif
+
 #ifdef	CONFIG_BOOTARGS
 	"bootargs="	CONFIG_BOOTARGS			"\0"
 #endif
@@ -85,20 +103,11 @@ uchar default_environment[] = {
 #ifdef	CONFIG_LOADS_ECHO
 	"loads_echo="	MK_STR(CONFIG_LOADS_ECHO)	"\0"
 #endif
-#ifdef	CONFIG_ETHADDR
-	"ethaddr="	MK_STR(CONFIG_ETHADDR)		"\0"
-#endif
 #ifdef	CONFIG_ETH1ADDR
 	"eth1addr="	MK_STR(CONFIG_ETH1ADDR)		"\0"
 #endif
 #ifdef	CONFIG_ETH2ADDR
 	"eth2addr="	MK_STR(CONFIG_ETH2ADDR)		"\0"
-#endif
-#ifdef	CONFIG_IPADDR
-	"ipaddr="	MK_STR(CONFIG_IPADDR)		"\0"
-#endif
-#ifdef	CONFIG_SERVERIP
-	"serverip="	MK_STR(CONFIG_SERVERIP)		"\0"
 #endif
 #ifdef	CFG_AUTOLOAD
 	"autoload="	CFG_AUTOLOAD			"\0"
@@ -114,9 +123,6 @@ uchar default_environment[] = {
 #endif
 #ifdef	CONFIG_NETMASK
 	"netmask="	MK_STR(CONFIG_NETMASK)		"\0"
-#endif
-#ifdef	CONFIG_HOSTNAME
-	"hostname="	MK_STR(CONFIG_HOSTNAME)		"\0"
 #endif
 #ifdef	CONFIG_BOOTFILE
 	"bootfile="	MK_STR(CONFIG_BOOTFILE)		"\0"
